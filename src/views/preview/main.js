@@ -45,6 +45,7 @@ function init(event) {
 }
 
 function newVue(attrs, main, html) {
+  console.log(attrs, '===', main, '===', html)
   main = eval(`(${main})`)
   main.template = `<div>${html}</div>`
   new Vue({

@@ -267,6 +267,7 @@ export default {
     })
   },
   methods: {
+    // 异步拉取组件数据，常见于表格配置
     fetchData(component) {
       const {
         dataType, method, url, dataKey, renderKey
@@ -299,6 +300,7 @@ export default {
       this.activeData = currentItem
       this.activeId = currentItem.__config__.formId
     },
+    // 拖拽组件至渲染区域后触发的事件
     onEnd(obj) {
       if (obj.from !== obj.to) {
         this.fetchData(tempActiveData)
@@ -306,12 +308,14 @@ export default {
         this.activeId = this.idGlobal
       }
     },
+    // 打开组件自定义面板，同时添加该组件至渲染区域
     addComponent(item) {
       const clone = this.cloneComponent(item)
       this.fetchData(clone)
       this.drawingList.push(clone)
       this.activeFormItem(clone)
     },
+    // 复制组件配置
     cloneComponent(origin) {
       const clone = deepClone(origin)
       const config = clone.__config__
@@ -321,6 +325,7 @@ export default {
       tempActiveData = clone
       return tempActiveData
     },
+    // 给组件分配ID和Key
     createIdAndKey(item) {
       const config = item.__config__
       config.formId = ++this.idGlobal

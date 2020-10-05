@@ -959,6 +959,7 @@ export default {
     setIcon(val) {
       this.activeData[this.currentIconModel] = val
     },
+    // 组件类型修改
     tagChange(tagIcon) {
       let target = inputComponents.find(item => item.__config__.tagIcon === tagIcon)
       if (!target) target = selectComponents.find(item => item.__config__.tagIcon === tagIcon)
