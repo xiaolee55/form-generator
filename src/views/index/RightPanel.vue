@@ -959,7 +959,7 @@ export default {
     setIcon(val) {
       this.activeData[this.currentIconModel] = val
     },
-    // 组件类型修改
+    // 组件类型修改，emit一个对外事件，触发重新渲染
     tagChange(tagIcon) {
       let target = inputComponents.find(item => item.__config__.tagIcon === tagIcon)
       if (!target) target = selectComponents.find(item => item.__config__.tagIcon === tagIcon)

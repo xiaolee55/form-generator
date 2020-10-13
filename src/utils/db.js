@@ -19,6 +19,7 @@ export function getDrawingList() {
   return null
 }
 
+// 存储最新的渲染队列
 export function saveDrawingList(list) {
   localStorage.setItem(DRAWING_ITEMS, JSON.stringify(list))
 }

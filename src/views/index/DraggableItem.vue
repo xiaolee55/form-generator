@@ -2,6 +2,7 @@
 import draggable from 'vuedraggable'
 import render from '@/components/render/render'
 
+// 组件的通用容器，主要包含了复制和删除的按钮
 const components = {
   itemBtns(h, currentItem, index, list) {
     const { copyItem, deleteItem } = this.$listeners
@@ -19,6 +20,7 @@ const components = {
     ]
   }
 }
+
 const layouts = {
   colFormItem(h, currentItem, index, list) {
     const { activeItem } = this.$listeners
@@ -72,6 +74,7 @@ const layouts = {
   raw(h, currentItem, index, list) {
     const config = currentItem.__config__
     const child = renderChildren.apply(this, arguments)
+    // render是一个组件，所以这里存在多重render
     return <render key={config.renderKey} conf={currentItem} onInput={ event => {
       this.$set(config, 'defaultValue', event)
     }}>
@@ -97,10 +100,13 @@ function layoutIsNotFound() {
 }
 
 export default {
+  // 用到拖拽组件和渲染组件
   components: {
-    render,
+    render, // 这是一个封装的render组件，内部用render函数实现，和下面的 render不是同一个东西
     draggable
   },
+  // 接收的参数，currentItem表示当前组件，index表示组件在队列中的序号，
+  // drawList表示整个渲染的组件列表，activeId表示当前组件的Id,formConf表示表单配置
   props: [
     'currentItem',
     'index',
@@ -109,6 +115,7 @@ export default {
     'formConf'
   ],
   render(h) {
+    // 获取当前组件的布局方式
     const layout = layouts[this.currentItem.__config__.layout]
 
     if (layout) {

@@ -417,13 +417,13 @@ export default {
     },
     tagChange(newTag) {
       newTag = this.cloneComponent(newTag)
-      const config = newTag.__config__
-      newTag.__vModel__ = this.activeData.__vModel__
-      config.formId = this.activeId
-      config.span = this.activeData.__config__.span
-      this.activeData.__config__.tag = config.tag
-      this.activeData.__config__.tagIcon = config.tagIcon
-      this.activeData.__config__.document = config.document
+      const config = newTag.__config__ // 获取当前组件的配置
+      newTag.__vModel__ = this.activeData.__vModel__ // 绑定的变量名
+      config.formId = this.activeId // 获取当前渲染的组件的Id
+      config.span = this.activeData.__config__.span // 获取尺寸
+      this.activeData.__config__.tag = config.tag // 修改当前渲染组件的标签名
+      this.activeData.__config__.tagIcon = config.tagIcon // 图标修改
+      this.activeData.__config__.document = config.document // 文档修改
       if (typeof this.activeData.__config__.defaultValue === typeof config.defaultValue) {
         config.defaultValue = this.activeData.__config__.defaultValue
       }
@@ -432,7 +432,9 @@ export default {
           newTag[key] = this.activeData[key]
         }
       })
+      // 将更新后的对象重新赋值给当前组件对象
       this.activeData = newTag
+      // 重新渲染
       this.updateDrawingList(newTag, this.drawingList)
     },
     updateDrawingList(newTag, list) {

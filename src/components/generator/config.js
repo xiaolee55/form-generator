@@ -524,6 +524,28 @@ export const layoutComponents = [
   },
   {
     __config__: {
+      label: '链接',
+      showLabel: true,
+      changeTag: true,
+      labelWidth: null,
+      tag: 'el-link',
+      tagIcon: 'button',
+      defaultValue: undefined,
+      span: 24,
+      layout: 'colFormItem',
+      document: 'https://element.eleme.cn/#/zh-CN/component/link'
+    },
+    __slot__: {
+      default: '主要链接'
+    },
+    type: 'primary',
+    underline: 'false',
+    disabled: 'false',
+    href: '',
+    icon: ''
+  },
+  {
+    __config__: {
       label: '按钮',
       showLabel: true,
       changeTag: true,

@@ -104,6 +104,7 @@ export default {
     }
   },
   render(h) {
+    // dataObject每次变化都会触发render函数重新执行
     const dataObject = makeDataObject()
     const confClone = deepClone(this.conf)
     const children = this.$slots.default || []
@@ -116,7 +117,7 @@ export default {
 
     // 将json表单配置转化为vue render可以识别的 “数据对象（dataObject）”
     buildDataObject.call(this, confClone, dataObject)
-
+    console.log('渲染')
     return h(this.conf.__config__.tag, dataObject, children)
   }
 }
